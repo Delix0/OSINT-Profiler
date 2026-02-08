@@ -367,7 +367,7 @@ Pull requests приветствуются! Для крупных изменен
 
 Вопросы? Предложения? Нашли баг?
 
-- GitHub Issues: [создать issue](https://github.com/Delix0/osint-profiler/issues)
+- GitHub Issues: [создать issue](https://github.com/Delix0/OSINT-Profiler/issues)
 - Email: drgdi1208@gmail.com
 
 ---
@@ -377,5 +377,6 @@ Pull requests приветствуются! Для крупных изменен
 **Made with 💀 for OSINT enthusiasts**
 
 ⭐ Star этот проект, если он полезен!
+
 
 </div>
