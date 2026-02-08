@@ -1,0 +1,11 @@
+# OSINT Profiler - Requirements
+# Python 3.8+
+
+# Core dependencies
+jinja2>=3.1.2
+rich>=13.7.0
+
+# Optional dependencies
+# Для расширенных возможностей можно добавить:
+# python-dateutil>=2.8.2
+# pillow>=10.0.0  # для обработки изображений
