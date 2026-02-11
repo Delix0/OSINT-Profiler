@@ -18,8 +18,6 @@
 <div align="center">
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Stars](https://img.shields.io/github/stars/Delix0/OSINT-Profiler?style=social)](https://github.com/Delix0/OSINT-Profiler/stargazers)
 
 [🚀 Быстрый старт](#-быстрый-старт) • 
@@ -1275,4 +1273,5 @@ SOFTWARE.
 [⬆ Наверх](#-osint-profiler)
 
 </div>
+
 
