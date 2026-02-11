@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSINT Report - {{ target.personal.full_name }}</title>
+    <title>OSINT Report - {{ target.personal.full_name if target.personal.full_name else 'Report' }}</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,77 +11,99 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="header-content">
-                <h1 class="glitch" data-text="OSINT PROFILER">OSINT PROFILER</h1>
-                <div class="header-meta">
-                    <span class="timestamp">Generated: {{ generated_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
-                    <span class="target-id">ID: {{ target.id }}</span>
-                </div>
+            <h1>🕵️ OSINT PROFILER</h1>
+            <div class="header-meta">
+                <span class="timestamp">
+                    <i class="fas fa-clock"></i>
+                    Создано: {{ generated_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                </span>
+                <span class="target-id">
+                    <i class="fas fa-id-card"></i>
+                    ID: {{ target.id }}
+                </span>
             </div>
         </header>
 
         <!-- Profile Card -->
         <section class="profile-card">
-            <div class="profile-header">
-                <div class="profile-photo">
-                    {% if target.personal.photo_url %}
-                        <img src="{{ target.personal.photo_url }}" alt="Photo">
-                    {% else %}
-                        <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    {% endif %}
-                    <div class="status-indicator"></div>
-                </div>
-                <div class="profile-info">
-                    <h2 class="name">{{ target.personal.full_name }}</h2>
-                    {% if target.personal.birth_date %}
-                    <p class="meta">
-                        <i class="fas fa-birthday-cake"></i>
-                        {{ target.personal.birth_date|format_date }} ({{ target.personal.birth_date|age }} лет)
-                    </p>
-                    {% endif %}
-                    {% if target.personal.birth_place %}
-                    <p class="meta">
-                        <i class="fas fa-map-marker-alt"></i>
-                        {{ target.personal.birth_place }}
-                    </p>
-                    {% endif %}
-                    {% if target.personal.aliases %}
-                    <div class="aliases">
-                        <span class="label">Псевдонимы:</span>
-                        {% for alias in target.personal.aliases %}
-                        <span class="alias-tag">{{ alias }}</span>
-                        {% endfor %}
+            <div class="profile-photo">
+                {% if target.personal.photo_url %}
+                    <img src="{{ target.personal.photo_url }}" alt="Photo">
+                {% else %}
+                    <div class="photo-placeholder">
+                        <i class="fas fa-user"></i>
                     </div>
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
-
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-share-alt"></i>
-                    <div class="stat-value">{{ target.stats.social_accounts }}</div>
-                    <div class="stat-label">Соцсети</div>
+            <div class="profile-info">
+                <h2 class="name">{{ target.personal.full_name }}</h2>
+                {% if target.personal.birth_date %}
+                <p class="meta">
+                    <i class="fas fa-birthday-cake"></i>
+                    {{ target.personal.birth_date|format_date }} 
+                    ({{ target.personal.birth_date|age }} лет)
+                </p>
+                {% endif %}
+                {% if target.personal.birth_place %}
+                <p class="meta">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ target.personal.birth_place }}
+                </p>
+                {% endif %}
+                {% if target.personal.gender %}
+                <p class="meta">
+                    <i class="fas fa-venus-mars"></i>
+                    {% if target.personal.gender == 'male' %}Мужской
+                    {% elif target.personal.gender == 'female' %}Женский
+                    {% else %}{{ target.personal.gender }}{% endif %}
+                </p>
+                {% endif %}
+                {% if target.personal.aliases %}
+                <div class="aliases">
+                    <span class="label"><strong>Псевдонимы:</strong></span>
+                    {% for alias in target.personal.aliases %}
+                    <span class="alias-tag">{{ alias }}</span>
+                    {% endfor %}
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <div class="stat-value">{{ target.stats.connections }}</div>
-                    <div class="stat-label">Связи</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-map-pin"></i>
-                    <div class="stat-value">{{ target.stats.addresses }}</div>
-                    <div class="stat-label">Адреса</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-briefcase"></i>
-                    <div class="stat-value">{{ target.stats.jobs }}</div>
-                    <div class="stat-label">Работа</div>
-                </div>
+                {% endif %}
             </div>
         </section>
+
+        <!-- Stats -->
+        {% if target.stats %}
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-share-alt"></i>
+                <span class="stat-value">{{ target.stats.social_accounts|default(0) }}</span>
+                <span class="stat-label">Соцсети</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <span class="stat-value">{{ target.stats.connections|default(0) }}</span>
+                <span class="stat-label">Связи</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-map-pin"></i>
+                <span class="stat-value">{{ target.stats.addresses|default(0) }}</span>
+                <span class="stat-label">Адреса</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-briefcase"></i>
+                <span class="stat-value">{{ target.stats.jobs|default(0) }}</span>
+                <span class="stat-label">Работа</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="stat-value">{{ target.stats.education|default(0) }}</span>
+                <span class="stat-label">Образование</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-home"></i>
+                <span class="stat-value">{{ target.stats.family|default(0) }}</span>
+                <span class="stat-label">Семья</span>
+            </div>
+        </div>
+        {% endif %}
 
         <!-- Contacts -->
         {% if target.contacts %}
@@ -93,7 +115,7 @@
             <div class="contacts-grid">
                 {% if target.contacts.phones %}
                 <div class="contact-group">
-                    <div class="contact-label">Телефоны:</div>
+                    <div class="contact-label">📞 Телефоны</div>
                     {% for phone in target.contacts.phones %}
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
@@ -105,7 +127,7 @@
                 
                 {% if target.contacts.emails %}
                 <div class="contact-group">
-                    <div class="contact-label">Email:</div>
+                    <div class="contact-label">✉️ Email</div>
                     {% for email in target.contacts.emails %}
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
@@ -117,10 +139,10 @@
                 
                 {% if target.contacts.messengers %}
                 <div class="contact-group">
-                    <div class="contact-label">Мессенджеры:</div>
+                    <div class="contact-label">💬 Мессенджеры</div>
                     {% for messenger, handle in target.contacts.messengers.items() %}
                     <div class="contact-item">
-                        <i class="fab fa-{{ messenger }}"></i>
+                        <i class="fab fa-{{ messenger|lower }}"></i>
                         <span>{{ handle }}</span>
                     </div>
                     {% endfor %}
@@ -141,15 +163,15 @@
                 {% for social in target.social_media %}
                 <div class="social-card">
                     <div class="social-header">
-                        <i class="fab fa-{{ social.platform }}"></i>
+                        <i class="fab fa-{{ social.platform|lower }}"></i>
                         <span class="platform-name">{{ social.platform|upper }}</span>
                     </div>
                     <a href="{{ social.url }}" target="_blank" class="social-username">
                         @{{ social.username }}
                     </a>
                     <div class="social-stats">
-                        <span><i class="fas fa-users"></i> {{ social.followers }}</span>
-                        <span><i class="fas fa-images"></i> {{ social.posts_count }}</span>
+                        <span><i class="fas fa-users"></i> {{ social.followers|default(0) }}</span>
+                        <span><i class="fas fa-images"></i> {{ social.posts_count|default(0) }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -169,10 +191,10 @@
                 <div class="family-member">
                     <div class="member-relation">{{ member.relation|title }}</div>
                     <div class="member-name">{{ member.full_name }}</div>
-                    {% if member.birth_year %}
+                    {% if member.birth_date %}
                     <div class="member-info">
                         <i class="fas fa-calendar"></i>
-                        {{ member.birth_year }} ({{ 2025 - member.birth_year }} лет)
+                        {{ member.birth_date|format_date }} ({{ member.birth_date|age }} лет)
                     </div>
                     {% endif %}
                     {% if member.occupation %}
@@ -188,7 +210,10 @@
                     </div>
                     {% endif %}
                     {% if member.notes %}
-                    <div class="member-notes">{{ member.notes }}</div>
+                    <div class="member-info">
+                        <i class="fas fa-note"></i>
+                        {{ member.notes }}
+                    </div>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -211,19 +236,27 @@
                         <div class="timeline-header">
                             <h4>{{ edu.institution }}</h4>
                             <span class="timeline-date">
-                                {{ edu.start_date|format_date('%Y') }} - 
-                                {{ edu.end_date|format_date('%Y') if edu.end_date else 'настоящее время' }}
+                                {{ edu.start_date|format_date('%m.%Y') }} - 
+                                {{ edu.end_date|format_date('%m.%Y') if edu.end_date else 'настоящее время' }}
                             </span>
                         </div>
+                        {% if edu.location %}
                         <p class="timeline-location">
                             <i class="fas fa-map-marker-alt"></i>
                             {{ edu.location }}
                         </p>
+                        {% endif %}
                         {% if edu.faculty %}
-                        <p class="timeline-detail">{{ edu.faculty }}</p>
+                        <p class="timeline-detail">
+                            <i class="fas fa-book"></i>
+                            {{ edu.faculty }}
+                        </p>
                         {% endif %}
                         {% if edu.specialization %}
-                        <p class="timeline-detail">{{ edu.specialization }}</p>
+                        <p class="timeline-detail">
+                            <i class="fas fa-flask"></i>
+                            {{ edu.specialization }}
+                        </p>
                         {% endif %}
                         {% if edu.degree %}
                         <span class="badge">{{ edu.degree }}</span>
@@ -251,19 +284,24 @@
                             <h4>{{ job.position }}</h4>
                             <span class="timeline-date">
                                 {{ job.start_date|format_date('%m.%Y') }} - 
-                                {{ job.end_date|format_date('%m.%Y') if job.end_date else 'настоящее время' }}
+                                {{ job.end_date|format_date('%m.%Y') if job.end_date else '📍 Настоящее время' }}
                             </span>
                         </div>
                         <p class="company-name">
                             <i class="fas fa-building"></i>
                             {{ job.company }}
                         </p>
+                        {% if job.location %}
                         <p class="timeline-location">
                             <i class="fas fa-map-marker-alt"></i>
                             {{ job.location }}
                         </p>
+                        {% endif %}
                         {% if job.description %}
-                        <p class="timeline-description">{{ job.description }}</p>
+                        <p class="timeline-description">
+                            <i class="fas fa-info-circle"></i>
+                            {{ job.description }}
+                        </p>
                         {% endif %}
                     </div>
                 </div>
@@ -272,14 +310,48 @@
         </section>
         {% endif %}
 
-        <!-- Connections Graph -->
+        <!-- Addresses -->
+        {% if target.addresses %}
+        <section class="data-section">
+            <h3 class="section-title">
+                <i class="fas fa-map"></i>
+                Адреса
+            </h3>
+            <div class="addresses-list">
+                {% for address in target.addresses %}
+                <div class="address-card">
+                    <div class="address-type">{{ address.type|title }}</div>
+                    <div class="address-text">{{ address.address }}</div>
+                    <div class="address-period">
+                        <i class="fas fa-calendar-alt"></i>
+                        {{ address.start_date|format_date }} - 
+                        {{ address.end_date|format_date if address.end_date else 'настоящее время' }}
+                    </div>
+                    {% if address.notes %}
+                    <div class="address-period">
+                        <i class="fas fa-sticky-note"></i>
+                        {{ address.notes }}
+                    </div>
+                    {% endif %}
+                    {% if address.coordinates and address.coordinates.lat and address.coordinates.lon %}
+                    <div class="address-period">
+                        <i class="fas fa-map-pin"></i>
+                        {{ "%.4f"|format(address.coordinates.lat) }}, {{ "%.4f"|format(address.coordinates.lon) }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Connections -->
         {% if target.connections %}
         <section class="data-section">
             <h3 class="section-title">
                 <i class="fas fa-project-diagram"></i>
                 Граф связей
             </h3>
-            <div id="network-graph"></div>
             <div class="connections-list">
                 {% for connection in target.connections %}
                 <div class="connection-card">
@@ -287,11 +359,13 @@
                         <span class="connection-name">{{ connection.name }}</span>
                         <span class="connection-relation">{{ connection.relation }}</span>
                     </div>
-                    <p class="connection-context">{{ connection.context }}</p>
+                    <div class="connection-context">{{ connection.context }}</div>
                     <div class="connection-meta">
-                        <span class="source-tag">{{ connection.source }}</span>
+                        <span class="source-tag">
+                            <i class="fas fa-database"></i> {{ connection.source }}
+                        </span>
                         <span class="strength-indicator">
-                            {% for i in range(connection.strength) %}
+                            {% for i in range(connection.strength|default(0)) %}
                             <i class="fas fa-star"></i>
                             {% endfor %}
                         </span>
@@ -302,30 +376,49 @@
         </section>
         {% endif %}
 
-        <!-- Addresses Map -->
-        {% if target.addresses %}
+        <!-- Assets -->
+        {% if target.assets and (target.assets.vehicles or target.assets.property) %}
         <section class="data-section">
             <h3 class="section-title">
-                <i class="fas fa-map"></i>
-                Карта адресов
+                <i class="fas fa-car"></i>
+                Активы
             </h3>
-            <div id="map"></div>
-            <div class="addresses-list">
-                {% for address in target.addresses %}
-                <div class="address-card">
-                    <div class="address-type">{{ address.type|title }}</div>
-                    <p class="address-text">{{ address.address }}</p>
-                    <p class="address-period">
-                        {{ address.start_date|format_date }} - 
-                        {{ address.end_date|format_date if address.end_date else 'настоящее время' }}
-                    </p>
-                </div>
-                {% endfor %}
+            <div class="assets-grid">
+                {% if target.assets.vehicles %}
+                    {% for vehicle in target.assets.vehicles %}
+                    <div class="asset-card">
+                        <div class="asset-type">Автомобиль</div>
+                        <div class="asset-title">{{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})</div>
+                        <div class="asset-detail">
+                            <i class="fas fa-hashtag"></i> {{ vehicle.plate_number }}
+                        </div>
+                        <div class="asset-detail">
+                            <i class="fas fa-palette"></i> {{ vehicle.color }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% if target.assets.property %}
+                    {% for prop in target.assets.property %}
+                    <div class="asset-card">
+                        <div class="asset-type">{{ prop.type|title }}</div>
+                        <div class="asset-title">{{ prop.address }}</div>
+                        <div class="asset-detail">
+                            <i class="fas fa-tag"></i> {{ prop.ownership }}
+                        </div>
+                        {% if prop.purchase_date %}
+                        <div class="asset-detail">
+                            <i class="fas fa-calendar"></i> Приобретено: {{ prop.purchase_date|format_date }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </section>
         {% endif %}
 
-        <!-- Timeline -->
+                <!-- Timeline Events -->
         {% if target.timeline %}
         <section class="data-section">
             <h3 class="section-title">
@@ -334,11 +427,15 @@
             </h3>
             <div class="events-timeline">
                 {% for event in target.timeline %}
-                <div class="event-item {{ event.category }}">
+                <div class="event-item">
                     <div class="event-date">{{ event.date|format_date }}</div>
                     <div class="event-content">
                         <div class="event-title">{{ event.event }}</div>
-                        <div class="event-location">{{ event.location }}</div>
+                        {% if event.location %}
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -376,35 +473,13 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>OSINT Profiler © 2025 | Confidential Report</p>
-            <p class="footer-meta">Target ID: {{ target.id }} | Updated: {{ target.updated_at|format_date('%Y-%m-%d %H:%M') }}</p>
+            <p><strong>OSINT Profiler</strong> © 2025 | Конфиденциальный отчёт</p>
+            <p class="footer-meta">
+                Target ID: {{ target.id }} | 
+                Создано: {{ target.created_at|format_date('%Y-%m-%d %H:%M') if target.created_at else 'N/A' }} | 
+                Обновлено: {{ target.updated_at|format_date('%Y-%m-%d %H:%M') if target.updated_at else 'N/A' }}
+            </p>
         </footer>
     </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
-    <script src="../static/js/network-graph.js"></script>
-    <script src="../static/js/map.js"></script>
-    
-    <script>
-        // Данные для графа связей
-        const connectionsData = {{ target.connections|tojson|safe if target.connections else '[]' }};
-        const targetName = "{{ target.personal.full_name }}";
-        
-        // Данные для карты
-        const addressesData = {{ target.addresses|tojson|safe if target.addresses else '[]' }};
-        
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            if (connectionsData.length > 0) {
-                initNetworkGraph(targetName, connectionsData);
-            }
-            if (addressesData.length > 0) {
-                initMap(addressesData);
-            }
-        });
-    </script>
 </body>
 </html>
