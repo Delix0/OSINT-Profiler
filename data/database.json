@@ -15,6 +15,14 @@
         ],
         "gender": "male"
       },
+      "stats": {
+        "social_accounts": 2,
+        "connections": 2,
+        "addresses": 2,
+        "jobs": 2,
+        "education": 2,
+        "family": 2
+      },
       "contacts": {
         "phones": [
           "+7-900-123-45-67",
@@ -49,7 +57,7 @@
         {
           "relation": "mother",
           "full_name": "Иванова Мария Петровна",
-          "birth_year": 1970,
+          "birth_date": "1970-01-01",
           "occupation": "Учитель",
           "workplace": "Школа №5, Москва",
           "notes": "Работает учителем математики"
@@ -57,7 +65,7 @@
         {
           "relation": "father",
           "full_name": "Иванов Иван Сергеевич",
-          "birth_year": 1968,
+          "birth_date": "1968-01-01",
           "occupation": "Инженер",
           "workplace": "ОАО 'Газпром'",
           "notes": "Ведущий инженер"
@@ -204,329 +212,9 @@
       ]
     },
     {
-      "personal": {
-        "full_name": "Алексей Морозов",
-        "birth_date": "1993-06-15",
-        "birth_place": "Санкт-Петербург, Россия",
-        "gender": "male",
-        "aliases": [
-          "alex_spb",
-          "morozov_dev"
-        ],
-        "photo_url": ""
-      },
-      "contacts": {
-        "phones": [
-          "+7-921-555-12-34",
-          "+7-812-555-67-89"
-        ],
-        "emails": [
-          "alex.morozov@example.com",
-          "morozov93@mail.ru"
-        ],
-        "messengers": {
-          "telegram": "@alex_morozov",
-          "whatsapp": "+7-921-555-12-34",
-          "skype": "alex.spb"
-        }
-      },
-      "social_media": [
-        {
-          "platform": "vk",
-          "url": "https://vk.com/alex_spb",
-          "username": "alex_spb",
-          "followers": 523,
-          "posts_count": 187
-        },
-        {
-          "platform": "instagram",
-          "url": "https://instagram.com/alex.morozov",
-          "username": "alex.morozov",
-          "followers": 1240,
-          "posts_count": 95
-        },
-        {
-          "platform": "github",
-          "url": "https://github.com/morozov-dev",
-          "username": "morozov-dev",
-          "followers": 89,
-          "posts_count": 45
-        }
-      ],
-      "family": [
-        {
-          "relation": "mother",
-          "full_name": "Морозова Елена Викторовна",
-          "birth_year": 1970,
-          "occupation": "Врач-терапевт",
-          "workplace": "Городская поликлиника №5, СПб",
-          "notes": "Стаж работы 25+ лет"
-        },
-        {
-          "relation": "father",
-          "full_name": "Морозов Сергей Николаевич",
-          "birth_year": 1968,
-          "occupation": "Инженер-конструктор",
-          "workplace": "Адмиралтейские верфи",
-          "notes": "Ведущий инженер"
-        },
-        {
-          "relation": "sister",
-          "full_name": "Морозова Ольга Сергеевна",
-          "birth_year": 1996,
-          "occupation": "Дизайнер",
-          "workplace": "Freelance",
-          "notes": "UI/UX дизайнер"
-        }
-      ],
-      "education": [
-        {
-          "type": "school",
-          "institution": "Лицей №239",
-          "location": "Санкт-Петербург",
-          "start_date": "2000-09-01",
-          "end_date": "2010-06-30",
-          "degree": "Общее среднее образование"
-        },
-        {
-          "type": "university",
-          "institution": "СПбПУ Петра Великого",
-          "location": "Санкт-Петербург",
-          "faculty": "Институт компьютерных наук и технологий",
-          "specialization": "Программная инженерия",
-          "start_date": "2010-09-01",
-          "end_date": "2014-06-30",
-          "degree": "Бакалавр"
-        },
-        {
-          "type": "university",
-          "institution": "СПбПУ Петра Великого",
-          "location": "Санкт-Петербург",
-          "faculty": "Институт компьютерных наук и технологий",
-          "specialization": "Программная инженерия",
-          "start_date": "2014-09-01",
-          "end_date": "2016-06-30",
-          "degree": "Магистр"
-        }
-      ],
-      "employment": [
-        {
-          "company": "JetBrains",
-          "position": "Junior Software Engineer",
-          "location": "Санкт-Петербург",
-          "start_date": "2016-07-01",
-          "end_date": "2018-12-31",
-          "description": "Разработка инструментов для IDE"
-        },
-        {
-          "company": "Яндекс",
-          "position": "Senior Software Engineer",
-          "location": "Санкт-Петербург",
-          "start_date": "2019-01-15",
-          "end_date": "2022-08-31",
-          "description": "Разработка поисковых алгоритмов"
-        },
-        {
-          "company": "VK (ВКонтакте)",
-          "position": "Tech Lead",
-          "location": "Санкт-Петербург",
-          "start_date": "2022-09-01",
-          "end_date": null,
-          "description": "Руководство командой разработки платформы"
-        }
-      ],
-      "addresses": [
-        {
-          "type": "residence",
-          "address": "Санкт-Петербург, пр. Просвещения 87, кв. 15",
-          "start_date": "1993-06-15",
-          "end_date": "2016-08-01",
-          "coordinates": {
-            "lat": 60.0446,
-            "lon": 30.3262
-          }
-        },
-        {
-          "type": "residence",
-          "address": "Санкт-Петербург, ул. Рубинштейна 23, кв. 42",
-          "start_date": "2016-08-01",
-          "end_date": null,
-          "coordinates": {
-            "lat": 59.928,
-            "lon": 30.3466
-          },
-          "notes": "Центр города, исторический район"
-        },
-        {
-          "type": "work",
-          "address": "Санкт-Петербург, Кантемировская ул. 2А (офис VK)",
-          "start_date": "2022-09-01",
-          "end_date": null,
-          "coordinates": {
-            "lat": 59.9326,
-            "lon": 30.3579
-          }
-        }
-      ],
-      "connections": [
-        {
-          "name": "Смирнов Дмитрий",
-          "relation": "colleague",
-          "context": "Работали вместе в JetBrains (2016-2018)",
-          "source": "LinkedIn",
-          "strength": 7
-        },
-        {
-          "name": "Петрова Анна",
-          "relation": "friend",
-          "context": "Одноклассница по лицею, поддерживают связь",
-          "source": "VK",
-          "strength": 9
-        },
-        {
-          "name": "Кузнецов Максим",
-          "relation": "colleague",
-          "context": "Коллега в Яндексе, Tech Lead соседней команды",
-          "source": "LinkedIn",
-          "strength": 8
-        },
-        {
-          "name": "Иванова Мария",
-          "relation": "girlfriend",
-          "context": "Отношения с 2021 года",
-          "source": "Instagram",
-          "strength": 10
-        },
-        {
-          "name": "Сидоров Игорь",
-          "relation": "colleague",
-          "context": "Текущий коллега в VK, Senior Engineer",
-          "source": "LinkedIn",
-          "strength": 7
-        }
-      ],
-      "timeline": [
-        {
-          "date": "1993-06-15",
-          "event": "Рождение",
-          "location": "Санкт-Петербург",
-          "category": "personal"
-        },
-        {
-          "date": "2010-09-01",
-          "event": "Поступление в СПбПУ",
-          "location": "Санкт-Петербург",
-          "category": "education"
-        },
-        {
-          "date": "2014-06-30",
-          "event": "Получение диплома бакалавра",
-          "location": "Санкт-Петербург",
-          "category": "education"
-        },
-        {
-          "date": "2016-06-30",
-          "event": "Получение диплома магистра",
-          "location": "Санкт-Петербург",
-          "category": "education"
-        },
-        {
-          "date": "2016-07-01",
-          "event": "Начало работы в JetBrains",
-          "location": "Санкт-Петербург",
-          "category": "employment"
-        },
-        {
-          "date": "2016-08-01",
-          "event": "Переезд в собственную квартиру",
-          "location": "Санкт-Петербург, ул. Рубинштейна",
-          "category": "relocation"
-        },
-        {
-          "date": "2019-01-15",
-          "event": "Переход в Яндекс",
-          "location": "Санкт-Петербург",
-          "category": "employment"
-        },
-        {
-          "date": "2022-09-01",
-          "event": "Повышение до Tech Lead в VK",
-          "location": "Санкт-Петербург",
-          "category": "employment"
-        }
-      ],
-      "assets": {
-        "vehicles": [
-          {
-            "type": "car",
-            "brand": "Skoda",
-            "model": "Octavia",
-            "year": 2020,
-            "plate_number": "А777АА178",
-            "color": "серый"
-          }
-        ],
-        "property": []
-      },
-      "digital_footprint": [
-        {
-          "source": "GitHub",
-          "type": "profile",
-          "url": "https://github.com/morozov-dev",
-          "date": "2015-03-20",
-          "content": "Активный участник open-source проектов"
-        },
-        {
-          "source": "VK",
-          "type": "post",
-          "url": "https://vk.com/wall12345_6789",
-          "date": "2024-12-25",
-          "content": "Новый год в офисе VK!"
-        }
-      ],
-      "notes": "Активный разработчик, участвует в open-source проектах. Интересуется машинным обучением и алгоритмами. Живёт в центре Санкт-Петербурга, работает в VK на должности Tech Lead.",
-      "tags": [
-        "IT",
-        "developer",
-        "SPb",
-        "VK",
-        "Python",
-        "open-source"
-      ],
       "id": "target_4fb3e5f1",
       "created_at": "2026-02-08T18:11:12.533249",
-      "updated_at": "2026-02-08T18:11:12.533249"
-    },
-    {
-      "personal": {
-        "full_name": "Лиза",
-        "birth_date": "",
-        "birth_place": "Херсон",
-        "gender": "Ж"
-      },
-      "contacts": {},
-      "social_media": [
-        {
-          "platform": "telegram",
-          "url": "https://t.me/fluxelfFx",
-          "username": "fluxelfFx",
-          "followers": 0,
-          "posts_count": 0
-        }
-      ],
-      "family": [],
-      "education": [],
-      "employment": [],
-      "addresses": [],
-      "connections": [],
-      "timeline": [],
-      "tags": [],
-      "notes": "",
-      "id": "target_d93cd604",
-      "created_at": "2026-02-08T18:14:14.655099",
-      "updated_at": "2026-02-08T18:14:14.655099"
-    },
-    {
+      "updated_at": "2026-02-08T18:11:12.533249",
       "personal": {
         "full_name": "Алексей Морозов",
         "birth_date": "1993-06-15",
@@ -537,6 +225,14 @@
           "morozov_dev"
         ],
         "photo_url": ""
+      },
+      "stats": {
+        "social_accounts": 3,
+        "connections": 5,
+        "addresses": 3,
+        "jobs": 3,
+        "education": 3,
+        "family": 3
       },
       "contacts": {
         "phones": [
@@ -580,7 +276,7 @@
         {
           "relation": "mother",
           "full_name": "Морозова Елена Викторовна",
-          "birth_year": 1970,
+          "birth_date": "1970-01-01",
           "occupation": "Врач-терапевт",
           "workplace": "Городская поликлиника №5, СПб",
           "notes": "Стаж работы 25+ лет"
@@ -588,7 +284,7 @@
         {
           "relation": "father",
           "full_name": "Морозов Сергей Николаевич",
-          "birth_year": 1968,
+          "birth_date": "1968-01-01",
           "occupation": "Инженер-конструктор",
           "workplace": "Адмиралтейские верфи",
           "notes": "Ведущий инженер"
@@ -596,7 +292,7 @@
         {
           "relation": "sister",
           "full_name": "Морозова Ольга Сергеевна",
-          "birth_year": 1996,
+          "birth_date": "1996-01-01",
           "occupation": "Дизайнер",
           "workplace": "Freelance",
           "notes": "UI/UX дизайнер"
@@ -728,6 +424,19 @@
           "strength": 7
         }
       ],
+      "assets": {
+        "vehicles": [
+          {
+            "type": "car",
+            "brand": "Skoda",
+            "model": "Octavia",
+            "year": 2020,
+            "plate_number": "А777АА178",
+            "color": "серый"
+          }
+        ],
+        "property": []
+      },
       "timeline": [
         {
           "date": "1993-06-15",
@@ -778,19 +487,6 @@
           "category": "employment"
         }
       ],
-      "assets": {
-        "vehicles": [
-          {
-            "type": "car",
-            "brand": "Skoda",
-            "model": "Octavia",
-            "year": 2020,
-            "plate_number": "А777АА178",
-            "color": "серый"
-          }
-        ],
-        "property": []
-      },
       "digital_footprint": [
         {
           "source": "GitHub",
@@ -806,19 +502,7 @@
           "date": "2024-12-25",
           "content": "Новый год в офисе VK!"
         }
-      ],
-      "notes": "Активный разработчик, участвует в open-source проектах. Интересуется машинным обучением и алгоритмами. Живёт в центре Санкт-Петербурга, работает в VK на должности Tech Lead.",
-      "tags": [
-        "IT",
-        "developer",
-        "SPb",
-        "VK",
-        "Python",
-        "open-source"
-      ],
-      "id": "target_b2cf98f4",
-      "created_at": "2026-02-08T18:17:44.553367",
-      "updated_at": "2026-02-08T18:17:44.553367"
-    }
-  ]
-}
+      ]
+    } 
+  ] 
+} 
